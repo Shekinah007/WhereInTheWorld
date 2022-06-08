@@ -24,8 +24,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log("SelectFilter: ", filter);
     setIsPending(true);
-    fetch(allResultsUrl)
+    fetch(filterUrl)
       .then((res) => res.json())
       .then((data) => {
         console.log(data[0].capital);
@@ -67,7 +68,7 @@ function App() {
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value="All">All</option>
           <option value="Africa">Africa</option>
-          <option value="America">America</option>
+          <option value="Americas">America</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europe</option>
           <option value="Oceania">Oceania</option>
