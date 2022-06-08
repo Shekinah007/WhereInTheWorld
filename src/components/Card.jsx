@@ -1,8 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router";
 
-const Card = ({ name, capital, region, population, flag }) => {
+const Card = ({ name, capital, region, population, flag, id }) => {
+  // const { id } = useParams();
+
   return (
-    <a href="#">
+    <Link to={`/details/${id}`}>
       <div className="Card">
         <img className="flag-image" src={flag} alt="flag" />
         <div className="card-text">
@@ -20,7 +24,7 @@ const Card = ({ name, capital, region, population, flag }) => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
