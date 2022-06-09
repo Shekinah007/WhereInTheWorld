@@ -9,50 +9,62 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   const [isPending, setIsPending] = useState(true);
   const [data, setData] = useState([]);
-  const [name, setName] = useState("");
-  const [filter, setFilter] = useState("Africa");
-  const [search, etSearch] = useState("");
+  // const [name, setName] = useState("");
+  const [filter, setFilter] = useState("Americas");
+  const [search, setSearch] = useState("nigeria");
   const allResultsUrl = "https://restcountries.com/v3.1/all";
   const filterUrl = "https://restcountries.com/v3.1/region/" + filter;
   const searchUrl = "https://restcountries.com/v2/name/" + search;
 
-  // All
+  // Search--------------------------------------------
   useEffect(() => {
     setIsPending(true);
-    fetch(allResultsUrl)
-      .then((res) => res.json())
+    fetch(searchUrl)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Search Error");
+      })
       .then((data) => {
-        console.log(data[0].capital);
         setData(data);
         setIsPending(false);
-      });
-  }, []);
+      })
+      .catch((error) => console.log(error));
+  }, [search]);
 
-  // Filter
+  // Filter --------------------------------------------------------------------
   useEffect(() => {
-    console.log("SelectFilter: ", filter);
     setIsPending(true);
     fetch(filterUrl)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something went wrong");
+      })
       .then((data) => {
-        console.log(data[0].capital);
         setData(data);
         setIsPending(false);
       });
   }, [filter]);
 
-  //Search by name--------------------------------------
+  // All
   useEffect(() => {
-    console.log("SelectFilter: ", filter);
     setIsPending(true);
-    fetch(filterUrl)
-      .then((res) => res.json())
+    fetch(allResultsUrl)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something Went wrong");
+      })
       .then((data) => {
-        console.log(data[0].capital);
         setData(data);
         setIsPending(false);
-      });
-  }, [search]);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const override = {
     display: "block",
@@ -65,27 +77,34 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <SpinnerDotted enabled={isPending} />
-        <ClimbingBoxLoader
-          color={"green"}
-          loading={isPending}
-          cssOverride={override}
-          size={70}
-        />
+        <div className="spinner">
+          {/* <SpinnerDotted enabled={isPending} /> */}
+          <ClimbingBoxLoader
+            color={"green"}
+            loading={isPending}
+            cssOverride={override}
+            size={40}
+          />
+        </div>
+
         <Switch>
           <Route exact path="/">
             <div className="filters">
               <input
+                placeholder="Search for a country..."
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="search"
               />
-              <label htmlFor="filters">Filter By Region</label>
+
               <select
-                value={filter}
+                // value={filter}
                 onChange={(e) => setFilter(e.target.value)}
               >
-                <option value="All">All</option>
+                <option value="" hidden>
+                  Filter by region
+                </option>
                 <option value="Africa">Africa</option>
                 <option value="Americas">America</option>
                 <option value="Asia">Asia</option>
@@ -112,7 +131,7 @@ function App() {
             </main>
           </Route>
           <Route exact path="/details/:id">
-            <Details data={data} />
+            {data && <Details data={data} />}
           </Route>
         </Switch>
       </div>

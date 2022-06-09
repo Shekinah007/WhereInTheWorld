@@ -25,7 +25,7 @@ const Details = ({ data }) => {
       population = card.population;
       flag = card.flags.svg;
       subregion = card.subregion;
-      topLevelDomain = card.tld[0];
+      topLevelDomain = card.tld ? card.tld[0] : "None";
       currencies = card.currencies[Object.keys(card.currencies)[0]].name;
       nativeName =
         card.name.nativeName[Object.keys(card.name.nativeName)[0]].common;
@@ -35,18 +35,48 @@ const Details = ({ data }) => {
   return (
     <div className="Details">
       <article>
-        <div className="img-link">
+        <div className="imgAndLink">
           <Link to="/">
             <button className="btn">Back</button>
-            <div class="flex-space-between">{/* <im src="" */}</div>
           </Link>
           <img src={flag} alt="" className="details-img" />
         </div>
         <div className="details-text">
-          <p>{name}</p>
-          <p>Top Level Domain: {topLevelDomain}</p>
-          <p>Here is currencies {currencies}</p>
-          <p>Native name: {nativeName}</p>
+          <h2>{name}</h2>
+          <div className="details-middle">
+            <div className="middle-left">
+              <p>
+                <b>Native Name: </b>
+                {nativeName}
+              </p>
+              <p>
+                <b>Population: </b> {population}{" "}
+              </p>
+              <p>
+                <b>Region: </b> {region}{" "}
+              </p>
+              <p>
+                <b>Sub Region: </b> {subregion}{" "}
+              </p>
+              <p>
+                <b>Capital: </b> {capital}{" "}
+              </p>
+            </div>
+            <div class="middle-right">
+              <p>
+                <b>Top Level Domain: </b> {topLevelDomain}
+              </p>
+              <p>
+                <b>Currencies: </b> {currencies}
+              </p>
+              {/* <p><b>Top Level Domain: </b> {topLevelDomain}</p> */}
+            </div>
+          </div>
+          <div>
+            <button>France</button>
+            <button>France</button>
+            <button>France</button>
+          </div>
         </div>
       </article>
     </div>
