@@ -7,6 +7,7 @@ import Details from "./components/Details";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isPending, setIsPending] = useState(true);
   const [data, setData] = useState([]);
   const [detailsData, setDetailsData] = useState([]);
@@ -17,6 +18,11 @@ function App() {
   const filterUrl = "https://restcountries.com/v3.1/region/" + filter;
   const searchUrl = "https://restcountries.com/v2/name/" + search;
 
+  // const main = document.querySelector("main");
+  // if (isDarkMode) {
+  //   main.style.color = "red";
+  // }
+  // console.log("body: ", main);
   // Search--------------------------------------------
   useEffect(() => {
     setIsSearch(false);
@@ -78,18 +84,31 @@ function App() {
   };
   console.log("Filter: ", filter);
 
+  function handleTheme() {
+    setIsDarkMode((prev) => !prev);
+  }
   return (
     <Router>
-      <div className="App">
-        <Header isPending={isPending} />
+      <div
+        className="App"
+        style={{
+          background: isDarkMode ? "hsl(207, 26%, 17%)" : "white",
+          color: isDarkMode ? "white" : "black",
+        }}
+      >
+        <Header
+          isPending={isPending}
+          handleTheme={handleTheme}
+          isDarkMode={isDarkMode}
+        />
         <div className="spinner">
-          <ClimbingBoxLoader
+          {/* <ClimbingBoxLoader
             color={"green"}
             loading={isPending}
             cssOverride={override}
             size={40}
             className="climbSpinner"
-          />
+          /> */}
         </div>
 
         <Switch>
@@ -101,6 +120,13 @@ function App() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search"
+                style={{
+                  background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
+                  boxShadow: isDarkMode
+                    ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
+                    : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
+                  color: isDarkMode ? "white" : "black",
+                }}
               />
               {/* <SpinnerDotted enabled={isPending} className="spinner" /> */}
               {/* <ClimbingBoxLoader
@@ -109,7 +135,16 @@ function App() {
                 cssOverride={override}
                 size={40}
               /> */}
-              <select onChange={(e) => setFilter(e.target.value)}>
+              <select
+                onChange={(e) => setFilter(e.target.value)}
+                style={{
+                  background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
+                  boxShadow: isDarkMode
+                    ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
+                    : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
+                  color: isDarkMode ? "white" : "black",
+                }}
+              >
                 <option value="" hidden>
                   Filter by region
                 </option>
@@ -135,13 +170,20 @@ function App() {
                       population={data.population}
                       region={data.region}
                       flag={data.flags.svg}
+                      isDarkMode={isDarkMode}
                     />
                   );
                 })}
             </main>
           </Route>
           <Route exact path="/details/:id">
-            {data && <Details data={detailsData} search={isSearch} />}
+            {data && (
+              <Details
+                data={detailsData}
+                search={isSearch}
+                isDarkMode={isDarkMode}
+              />
+            )}
           </Route>
         </Switch>
       </div>

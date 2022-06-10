@@ -41,7 +41,7 @@ h1, h2, h3, h4, p {
 }
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 .flex-column {
   display: flex;
@@ -58,6 +58,7 @@ h2 {
 .App {
   min-height: 100vh;
   background-color: var(--lightBackground);
+  color: yellow;
 }
 main {
   flex-direction: row;
@@ -76,12 +77,11 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 0 5vw 0 5vw;
-  box-shadow: -4px 11px 13px -11px rgba(156, 149, 149, 0.75);
+  /* box-shadow: -4px 11px 13px -11px rgba(156, 149, 149, 0.75);
   -webkit-box-shadow: -4px 11px 13px -11px rgba(160, 155, 155, 0.75);
-  -moz-box-shadow: -4px 11px 13px -11px rgba(173, 169, 169, 0.75);
+  -moz-box-shadow: -4px 11px 13px -11px rgba(173, 169, 169, 0.75); */
 }
 header * {
-  /* background: chartreuse; */
   margin: 0;
   padding: 0;
 }
@@ -103,17 +103,21 @@ header * {
   outline: none;
   height: 40px;
   border-radius: 5px;
-  box-shadow: -1px 2px 9px 1px rgba(175, 172, 172, 0.75);
+  box-shadow: -1px 2px 9px 1px rgba(32, 32, 32, 0.75);
   -webkit-box-shadow: -1px 2px 9px 1px rgba(182, 180, 180, 0.75);
   -moz-box-shadow: -1px 2px 9px 1px rgba(172, 170, 170, 0.75);
 }
 .search {
   width: 30vw;
 }
+.Details button {
+  color: inherit;
+}
 select {
   width: 15vw;
 }
 .Card {
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -157,10 +161,13 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 		transform-origin: top;
 	}
 }
-.Card:hover {
+/* .Card:hover {
   transform: scale(1.05);
+} */
+.Card:hover {
+  transform: scale(2);
+  /* width: 20vw; */
 }
-
 .card-text {
   margin: 8px;
   display: flex;
@@ -180,7 +187,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
   max-width: 100%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  background-color: rgb(138, 130, 130);
+  background-color: rgb(14, 13, 13);
 }
 .Details {
   margin: auto;
@@ -192,6 +199,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: inherit;
+
 }
 .Details h2 {
   font-size: 30px;
@@ -234,10 +243,13 @@ article {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background: cornflowerblue; */
 }
 .borderCountries {
   margin: 5px;
+}
+button:hover {
+  box-shadow: none;
+  box-shadow: -1px 2px 9px 1px rgba(141, 140, 140, 0.75);
 }
 button {
   background: none;
@@ -245,9 +257,8 @@ button {
   border-radius: 5px;
   padding: 0;
   padding: 5px 25px;
-  box-shadow: -1px 2px 9px 1px rgba(136, 134, 134, 0.75);
--webkit-box-shadow: -1px 2px 9px 1px rgba(151, 148, 148, 0.75);
--moz-box-shadow: -1px 2px 9px 1px rgba(121, 120, 120, 0.75);
+  box-shadow: -1px 2px 9px 1px rgba(216, 214, 214, 0.75);
+  transition: 0.3s;
 }
 .spinner {
   display: absolute;
@@ -279,6 +290,7 @@ button {
     margin: 0;
     margin-bottom: 20px;
   }
+  
  .Details {
    flex-direction: column;
  }

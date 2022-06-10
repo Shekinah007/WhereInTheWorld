@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 
-const Details = ({ data, isSearch }) => {
+const Details = ({ data, isSearch, isDarkMode }) => {
   const { id } = useParams();
 
   let name = "";
@@ -50,11 +50,20 @@ const Details = ({ data, isSearch }) => {
   console.log("Border: ", borderCountriesCard);
 
   return (
-    <div className="Details">
+    <div className="Details" style={{ color: isDarkMode ? "white" : "black" }}>
       <article>
         <div className="imgAndLink">
           <Link to="/">
-            <button className="btn back">Back</button>
+            <button
+              className="btn back"
+              style={{
+                boxShadow: isDarkMode
+                  ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
+                  : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
+              }}
+            >
+              Back
+            </button>
           </Link>
           <img src={flag} alt="" className="details-img" />
         </div>
@@ -94,7 +103,14 @@ const Details = ({ data, isSearch }) => {
             {borderCountries &&
               borderCountriesCard.map((country) => {
                 return (
-                  <button className="borderCountries">
+                  <button
+                    className="borderCountries"
+                    style={{
+                      boxShadow: isDarkMode
+                        ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
+                        : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
+                    }}
+                  >
                     <Link to={`/details/${country.area}`}>
                       {country.name.common}
                     </Link>
