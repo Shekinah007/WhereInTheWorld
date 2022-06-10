@@ -1,6 +1,8 @@
 import React from "react";
 import { SpinnerDotted } from "spinners-react";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import moonIcon from "../images/moonandstar.png";
+import sunIcon from "../images/3741356_sun_sunny_weather_iconsvg.svg";
 
 const Header = ({ isPending, isDarkMode, handleTheme }) => {
   const divStyles = {
@@ -20,7 +22,14 @@ const Header = ({ isPending, isDarkMode, handleTheme }) => {
       }}
     >
       <h1> Where in the world?</h1>
-      <p onClick={handleTheme}>{isDarkMode ? "Light Mode" : "Dark Mode"} </p>
+      <div onClick={handleTheme}>
+        <img
+          src={isDarkMode ? sunIcon : moonIcon}
+          alt=""
+          className="theme-icon"
+        />{" "}
+        {isDarkMode ? "Light Mode" : "Dark Mode"}{" "}
+      </div>
     </header>
   );
 };

@@ -112,7 +112,7 @@ function App() {
         </div>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/WhereInTheWorld">
             <div className="filters">
               <input
                 placeholder="Search for a country..."

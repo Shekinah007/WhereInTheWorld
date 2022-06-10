@@ -53,7 +53,7 @@ const Details = ({ data, isSearch, isDarkMode }) => {
     <div className="Details" style={{ color: isDarkMode ? "white" : "black" }}>
       <article>
         <div className="imgAndLink">
-          <Link to="/">
+          <Link to="/WhereInTheWorld">
             <button
               className="btn back"
               style={{
