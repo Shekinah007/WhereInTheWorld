@@ -3,8 +3,9 @@ import { useParams, useHistory } from "react-router";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 
-const Details = ({ data }) => {
+const Details = ({ data, isSearch }) => {
   const { id } = useParams();
+
   let name = "";
   let nativeName = "";
   let flag = "";
@@ -17,27 +18,43 @@ const Details = ({ data }) => {
   let languages = [];
   let borderCountries = [];
 
+  let borderCountriesCard = [];
+
   data.forEach((card) => {
     if (card.area == id) {
-      name = card.name.official;
+      name = card.name.official ? card.name.official : card.name;
       region = card.region;
-      capital = card.capital ? card.capital[0] : "None";
+      capital = card.capital ? card.capital : "None";
       population = card.population;
       flag = card.flags.svg;
       subregion = card.subregion;
-      topLevelDomain = card.tld ? card.tld[0] : "None";
+      topLevelDomain = card.tld ? card.tld[0] : card.tld ? card.tld : "None";
       currencies = card.currencies[Object.keys(card.currencies)[0]].name;
-      nativeName =
-        card.name.nativeName[Object.keys(card.name.nativeName)[0]].common;
+      nativeName = card.name.nativeName
+        ? card.name.nativeName[Object.keys(card.name.nativeName)[0]].common
+        : card.nativeName;
+      borderCountries = card.borders ? card.borders : [];
+      languages = card.languages;
     }
   });
-  // console.log(languages);
+  console.log("Languages: ", languages);
+  for (let i = 0; i < borderCountries.length; i++) {
+    data.forEach((card) => {
+      if (borderCountries[i] === card.cca3) {
+        borderCountriesCard.push(card);
+        console.log("Country Name: ", card.name.common);
+      }
+    });
+  }
+  console.log();
+  console.log("Border: ", borderCountriesCard);
+
   return (
     <div className="Details">
       <article>
         <div className="imgAndLink">
           <Link to="/">
-            <button className="btn">Back</button>
+            <button className="btn back">Back</button>
           </Link>
           <img src={flag} alt="" className="details-img" />
         </div>
@@ -73,9 +90,17 @@ const Details = ({ data }) => {
             </div>
           </div>
           <div>
-            <button>France</button>
-            <button>France</button>
-            <button>France</button>
+            <h3>Border Countries:</h3>
+            {borderCountries &&
+              borderCountriesCard.map((country) => {
+                return (
+                  <button className="borderCountries">
+                    <Link to={`/details/${country.area}`}>
+                      {country.name.common}
+                    </Link>
+                  </button>
+                );
+              })}
           </div>
         </div>
       </article>

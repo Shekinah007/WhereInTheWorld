@@ -9,22 +9,24 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   const [isPending, setIsPending] = useState(true);
   const [data, setData] = useState([]);
-  // const [name, setName] = useState("");
-  const [filter, setFilter] = useState("Americas");
-  const [search, setSearch] = useState("nigeria");
+  const [detailsData, setDetailsData] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [search, setSearch] = useState("");
   const allResultsUrl = "https://restcountries.com/v3.1/all";
   const filterUrl = "https://restcountries.com/v3.1/region/" + filter;
   const searchUrl = "https://restcountries.com/v2/name/" + search;
 
   // Search--------------------------------------------
   useEffect(() => {
+    setIsSearch(false);
     setIsPending(true);
     fetch(searchUrl)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error("Search Error");
+        throw new Error(res.statusText);
       })
       .then((data) => {
         setData(data);
@@ -35,13 +37,14 @@ function App() {
 
   // Filter --------------------------------------------------------------------
   useEffect(() => {
+    setIsSearch(false);
     setIsPending(true);
     fetch(filterUrl)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error("Something went wrong");
+        throw new Error(res.statusText);
       })
       .then((data) => {
         setData(data);
@@ -51,16 +54,18 @@ function App() {
 
   // All
   useEffect(() => {
+    setIsSearch(true);
     setIsPending(true);
     fetch(allResultsUrl)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error("Something Went wrong");
+        throw new Error(res.statusText);
       })
       .then((data) => {
         setData(data);
+        setDetailsData(data);
         setIsPending(false);
       })
       .catch((error) => console.log(error));
@@ -76,14 +81,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header isPending={isPending} />
         <div className="spinner">
-          {/* <SpinnerDotted enabled={isPending} /> */}
           <ClimbingBoxLoader
             color={"green"}
             loading={isPending}
             cssOverride={override}
             size={40}
+            className="climbSpinner"
           />
         </div>
 
@@ -97,11 +102,14 @@ function App() {
                 onChange={(e) => setSearch(e.target.value)}
                 className="search"
               />
-
-              <select
-                // value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-              >
+              {/* <SpinnerDotted enabled={isPending} className="spinner" /> */}
+              {/* <ClimbingBoxLoader
+                color={"green"}
+                loading={isPending}
+                cssOverride={override}
+                size={40}
+              /> */}
+              <select onChange={(e) => setFilter(e.target.value)}>
                 <option value="" hidden>
                   Filter by region
                 </option>
@@ -113,15 +121,17 @@ function App() {
               </select>
             </div>
             <main>
+              <SpinnerDotted enabled={isPending} className="spinner" />
+
               {data &&
                 data.map((data, index) => {
                   return (
                     <Card
                       key={index}
                       id={data.area}
-                      name={data.name.official}
+                      name={data.name.official ? data.name.official : data.name}
                       // capital={data.capital[0]}
-                      capital={data.capital ? data.capital[0] : "None"}
+                      capital={data.capital ? data.capital : "None"}
                       population={data.population}
                       region={data.region}
                       flag={data.flags.svg}
@@ -131,7 +141,7 @@ function App() {
             </main>
           </Route>
           <Route exact path="/details/:id">
-            {data && <Details data={data} />}
+            {data && <Details data={detailsData} search={isSearch} />}
           </Route>
         </Switch>
       </div>

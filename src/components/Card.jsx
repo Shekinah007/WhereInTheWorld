@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useParams, useHistory } from "react-router";
 
-const Card = ({ name, capital, region, population, flag, id }) => {
+const Card = ({ name, capital, region, population, flag, id }, data) => {
   // const { id } = useParams();
 
   return (
