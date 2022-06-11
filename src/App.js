@@ -138,13 +138,6 @@ function App() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="search-input"
-                  // style={{
-                  //   background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
-                  //   boxShadow: isDarkMode
-                  //     ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
-                  //     : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
-                  //   color: isDarkMode ? "white" : "black",
-                  // }}
                 />
               </div>
               <select
