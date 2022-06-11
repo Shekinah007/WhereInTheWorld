@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/WhereInTheWorld/static/css/main.a491771f.css",
+    "main.css": "/WhereInTheWorld/static/css/main.e124ae93.css",
     "main.js": "/WhereInTheWorld/static/js/main.d857dc94.js",
     "static/js/787.28cb0dcd.chunk.js": "/WhereInTheWorld/static/js/787.28cb0dcd.chunk.js",
     "service-worker.js": "/WhereInTheWorld/service-worker.js",
     "index.html": "/WhereInTheWorld/index.html",
     "static/media/3741356_sun_sunny_weather_iconsvg.svg": "/WhereInTheWorld/static/media/3741356_sun_sunny_weather_iconsvg.93462eb26a8d4ef5a7d1ee748d5dd897.svg",
-    "main.a491771f.css.map": "/WhereInTheWorld/static/css/main.a491771f.css.map",
+    "main.e124ae93.css.map": "/WhereInTheWorld/static/css/main.e124ae93.css.map",
     "main.d857dc94.js.map": "/WhereInTheWorld/static/js/main.d857dc94.js.map",
     "787.28cb0dcd.chunk.js.map": "/WhereInTheWorld/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a491771f.css",
+    "static/css/main.e124ae93.css",
     "static/js/main.d857dc94.js"
   ]
 }
