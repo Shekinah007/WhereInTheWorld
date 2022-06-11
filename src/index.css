@@ -33,8 +33,6 @@ code {
     monospace;
 }
 
-
-
 h1, h2, h3, h4, p {
   margin: 0;
   padding: 0;
@@ -62,25 +60,17 @@ h2 {
 }
 main {
   flex-direction: row;
-  /* padding: 5vmin; */
-  /* background: antiquewhite; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* gap: 20px; */
   flex-wrap: wrap;
 }
 
 .Header {
   height: 10vh;
-  /* background: white; */
   justify-content: space-between;
   align-items: center;
   padding: 0 5vw 0 5vw;
- 
-  /* box-shadow: -4px 11px 13px -11px rgba(156, 149, 149, 0.75);
-  -webkit-box-shadow: -4px 11px 13px -11px rgba(160, 155, 155, 0.75);
-  -moz-box-shadow: -4px 11px 13px -11px rgba(173, 169, 169, 0.75); */
 }
 header * {
   margin: 0;
@@ -88,11 +78,9 @@ header * {
 }
 header div {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   height: 50%;
-  /* background: chartreuse; */
-  box-sizing: border-box;
 }
 header div:hover {
   cursor: pointer;
@@ -100,7 +88,7 @@ header div:hover {
 .theme-icon {
   height: 50%;
   margin-right: 5px;
-  margin-bottom: 2px;
+  /* margin-bottom: 2px; */
 }
 .filters {
   display: flex;
@@ -207,7 +195,6 @@ select {
   max-height: 40%;
   flex-direction: column;
   align-items: flex-start;
-  
   font-size: 12px;
   justify-content: space-around;
 }
@@ -224,8 +211,6 @@ select {
 .Details {
   margin: auto;
   padding: auto;
-  /* background-color: var(--lightBackground); */
-  /* background-color: rgb(170, 194, 194); */
   height: 90vh;
   display: flex;
   align-items: center;
@@ -243,11 +228,9 @@ article {
   justify-content: space-between;
   align-items: flex-end;
   width: 70vw;
-  /* background: chocolate; */
   height: 60vh;
 }
 .imgAndLink {  
-   /* background: chartreuse; */
    width: 50%;
    display: flex;
    flex-direction: column;
@@ -265,7 +248,6 @@ article {
   justify-content: space-evenly;
   height: 100%;
   width: 45%;
-  /* background-color: cornsilk; */
 }
 
 .details-middle {
@@ -297,8 +279,6 @@ button {
   display: absolute;
   top: 20;
   margin: auto;
-  /* background: green; */
-  /* height:  */
   box-shadow: none;
   position: absolute;
   z-index: 20;
@@ -329,7 +309,6 @@ button {
  }
  article {
    flex-direction: column;
-   /* background: chocolate; */
    justify-content: space-between;
    align-items: center;
    height: 80vh;
@@ -345,7 +324,6 @@ button {
    width: 100%;
  }
  .details-middle {
-   /* background: coral; */
    flex-direction: column;
    gap: 20px;
    align-items: flex-start;
@@ -357,7 +335,6 @@ button {
  }
  .search {
    width: 80vw;
-   /* height: 500px; */
  }
  select {
    width: 50vw;
