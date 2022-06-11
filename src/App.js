@@ -141,6 +141,7 @@ function App() {
                 />
               </div>
               <select
+                name="regions"
                 onChange={(e) => setFilter(e.target.value)}
                 style={{
                   background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
@@ -154,7 +155,7 @@ function App() {
                   Filter by region
                 </option>
                 <option value="Africa">Africa</option>
-                <option value="Americas">America</option>
+                <option value="Americas">Americas</option>
                 <option value="Asia">Asia</option>
                 <option value="Europe">Europe</option>
                 <option value="Oceania">Oceania</option>
