@@ -88,8 +88,11 @@ header * {
 }
 header div {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: center;
   height: 50%;
+  /* background: chartreuse; */
+  box-sizing: border-box;
 }
 header div:hover {
   cursor: pointer;
@@ -97,6 +100,7 @@ header div:hover {
 .theme-icon {
   height: 50%;
   margin-right: 5px;
+  margin-bottom: 2px;
 }
 .filters {
   display: flex;
@@ -108,6 +112,7 @@ header div:hover {
 
 .filters * {
   /* background: aqua; */
+
   padding-left: 10px;
   padding-right: 10px;
   box-sizing: border-box;
@@ -120,15 +125,29 @@ header div:hover {
   -moz-box-shadow: -1px 2px 9px 1px rgba(172, 170, 170, 0.75);
 }
 .search {
-  width: 30vw;
+  width: 25vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+.search-input {
+  background: none;
+  box-shadow: none;
+  color: inherit; 
+}
+.search img {
+  padding: 0;
+  box-shadow: none;
+  height: 40%;
+  margin: 0;
+}
+
 .Details button {
   color: inherit;
 }
 select {
   width: 15vw;
 }
-
 
 .Card {
   
@@ -142,9 +161,9 @@ select {
   border-radius: 6px;
   transition: 0.1s;
   box-shadow: -1px 2px 9px 1px rgba(136, 134, 134, 0.75);
--webkit-box-shadow: -1px 2px 9px 1px rgba(151, 148, 148, 0.75);
--moz-box-shadow: -1px 2px 9px 1px rgba(121, 120, 120, 0.75);
-animation: myAnim 1s ease 0s 1 normal forwards;
+  -webkit-box-shadow: -1px 2px 9px 1px rgba(151, 148, 148, 0.75);
+  -moz-box-shadow: -1px 2px 9px 1px rgba(121, 120, 120, 0.75);
+  animation: myAnim 1s ease 0s 1 normal forwards;
 }
 .Card:active {
   animation: myAnimOut 1s ease 0s 1 normal forwards;
@@ -179,8 +198,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
   transform: scale(1.05);
 } */
 .Card:hover {
-  transform: scale(2);
-  /* width: 20vw; */
+  
 }
 .card-text {
   margin: 8px;
@@ -217,7 +235,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
 }
 .Details h2 {
-  font-size: 30px;
+  font-size: 25px;
+  line-height: 1;
 }
 article {
   display: flex;
@@ -244,7 +263,7 @@ article {
   flex-direction: column;
   align-content: center;
   justify-content: space-evenly;
-  height: 80%;
+  height: 100%;
   width: 45%;
   /* background-color: cornsilk; */
 }

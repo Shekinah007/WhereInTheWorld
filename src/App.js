@@ -1,3 +1,6 @@
+import searchDarkIcon from "./images/4552616_glass_loupe_magnifier_magnifying_magnifying glass_icon.png";
+import searchLightIcon from "./images/4552616_glass_loupe_magnifier_magnifying_magnifying glass_white.png";
+
 import React, { useEffect, useState, CSSProperties } from "react";
 import Header from "./components/Header";
 import Card from "./components/Card";
@@ -114,11 +117,7 @@ function App() {
         <Switch>
           <Route exact path="/WhereInTheWorld">
             <div className="filters">
-              <input
-                placeholder="Search for a country..."
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+              <div
                 className="search"
                 style={{
                   background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
@@ -127,14 +126,27 @@ function App() {
                     : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
                   color: isDarkMode ? "white" : "black",
                 }}
-              />
-              {/* <SpinnerDotted enabled={isPending} className="spinner" /> */}
-              {/* <ClimbingBoxLoader
-                color={"green"}
-                loading={isPending}
-                cssOverride={override}
-                size={40}
-              /> */}
+              >
+                <img
+                  src={isDarkMode ? searchLightIcon : searchDarkIcon}
+                  alt=""
+                />
+
+                <input
+                  placeholder="Search for a country..."
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="search-input"
+                  // style={{
+                  //   background: isDarkMode ? "hsl(209, 23%, 22%)" : "white",
+                  //   boxShadow: isDarkMode
+                  //     ? "-1px 2px 9px 1px rgba(32, 32, 32, 0.75)"
+                  //     : "-1px 2px 9px 1px rgba(216, 214, 214, 0.75)",
+                  //   color: isDarkMode ? "white" : "black",
+                  // }}
+                />
+              </div>
               <select
                 onChange={(e) => setFilter(e.target.value)}
                 style={{
